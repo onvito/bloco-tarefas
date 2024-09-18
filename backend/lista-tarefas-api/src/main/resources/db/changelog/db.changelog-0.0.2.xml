@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<changeSet author="marcelo" id="changelog-0.0.2">
+		<!-- Trigger para atualizar a coluna dt_alteracao -->
+	    <sql>
+	        CREATE OR REPLACE FUNCTION update_timestamp()
+	        RETURNS TRIGGER AS $$
+	        BEGIN
+	            NEW.dt_alteracao = NOW();
+	            RETURN NEW;
+	        END;
+	        $$ LANGUAGE plpgsql;
+	    </sql>
+
+		<sql>
+			CREATE TRIGGER update_tarefa_timestamp
+			BEFORE UPDATE ON tb_tarefa
+			FOR EACH ROW
+			EXECUTE FUNCTION update_timestamp();
+		</sql>
+	</changeSet>
+
+</databaseChangeLog>

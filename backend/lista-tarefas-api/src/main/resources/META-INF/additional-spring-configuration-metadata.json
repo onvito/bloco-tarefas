@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "spring.jpa.liquibase",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.liquibase'"
+  },
+  {
+    "name": "spring.jpa.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.enabled'"
+  },
+  {
+    "name": "spring.jpa.change-log",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.change-log'"
+  },
+  {
+    "name": "spring.jpa.default-schema",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.default-schema'"
+  },
+  {
+    "name": "spring.jpa.drop-first",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.jpa.drop-first'"
+  }
+]}

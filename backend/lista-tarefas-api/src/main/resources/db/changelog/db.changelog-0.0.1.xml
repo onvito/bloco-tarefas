@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<!-- Tabela de Usuário -->
+	<changeSet author="marcelo" id="changelog-0.0.1">
+		<createTable tableName="tb_usuario">
+			<column name='id' type='UUID'
+				defaultValueComputed='uuid_generate_v4()'>
+				<constraints nullable='false' primaryKey='true'
+					unique='true' />
+			</column>
+			<column name='email' type='varchar(255)'>
+				<constraints nullable='false' unique='true' />
+			</column>
+			<column name='nome' type='varchar(255)'>
+				<constraints nullable='false' />
+			</column>
+			<column name='senha' type='varchar(60)'>
+				<constraints nullable='false' />
+			</column>
+			<column name='dt_inclusao' type='TIMESTAMP'
+				defaultValueComputed='NOW()'>
+				<constraints nullable='false' />
+			</column>
+		</createTable>
+
+		<!-- Tabela de Tarefas -->
+		<createTable tableName="tb_tarefa">
+			<column name='id' type='UUID'
+				defaultValueComputed='uuid_generate_v4()'>
+				<constraints nullable='false' primaryKey='true'
+					unique='true' />
+			</column>
+
+			<column name="id_usuario" type="UUID">
+				<constraints nullable='false' />
+			</column>
+			<column name='anotacoes' type='text' />
+			<column name='favorito' type='BOOL'
+				defaultValueBoolean='false' />
+			<column name='cor' type='varchar(7)' />
+			<column name='dt_inclusao' type='TIMESTAMP'
+				defaultValueComputed='NOW()'>
+				<constraints nullable='false' />
+			</column>
+			<column name='dt_alteracao' type='TIMESTAMP'
+				defaultValueComputed='NOW()'>
+				<constraints nullable='false' />
+			</column>
+
+		</createTable>
+
+		<!-- Chave estrangeira para usuário -->
+		<addForeignKeyConstraint
+			baseTableName="tb_tarefa" baseColumnNames="id_usuario"
+			referencedTableName="tb_usuario" referencedColumnNames="id"
+			constraintName="fk_tarefa_usuario" />
+
+	</changeSet>
+
+</databaseChangeLog>

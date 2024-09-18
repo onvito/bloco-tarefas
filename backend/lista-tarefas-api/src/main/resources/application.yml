@@ -9,3 +9,9 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  liquibase:
+    enabled: true   
+    change-log: classpath:/db/changelog/db.changelog-master.xml  # Caminho para o arquivo de changelog
+    default-schema: public  # Esquema padrão (opcional)
+    drop-first: false  # dropar o banco antes de recriar

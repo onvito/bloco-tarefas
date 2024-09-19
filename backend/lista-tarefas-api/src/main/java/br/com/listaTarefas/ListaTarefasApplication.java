@@ -1,4 +1,4 @@
-package br.com.listaTarefas.lista_tarefas;
+package br.com.listaTarefas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -4,6 +4,11 @@ spring:
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
+  
+  security:
+    user:
+      name: user
+      password: senha
 
   jpa:
     hibernate:

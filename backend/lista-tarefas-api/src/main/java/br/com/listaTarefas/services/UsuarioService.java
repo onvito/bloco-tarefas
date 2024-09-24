@@ -7,27 +7,49 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.listaTarefas.model.Usuario;
+import br.com.listaTarefas.model.vos.UsuarioDTO;
 import br.com.listaTarefas.repositorios.UsuarioRepository;
+
 
 @Service
 public class UsuarioService {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+//    private final BCryptPasswordEncoder passwordEncoder;
 
-    public List<Usuario> listarTodos() {
-        return usuarioRepository.findAll();
-    }
+//    public UsuarioService(UsuarioRepository usuarioRepository) {
+//        this.usuarioRepository = usuarioRepository;
+//        this.passwordEncoder = new BCryptPasswordEncoder(); // Cria o encoder para senhas
+//    }
 
-    public Usuario salvar(Usuario usuario) {
-        return usuarioRepository.save(usuario);
-    }
+	public List<Usuario> listarTodos() {
+		return usuarioRepository.findAll();
+	}
 
-    public Usuario buscarPorId(UUID id) {
-        return usuarioRepository.findById(id).orElse(null);
-    }
+	public Usuario salvar(Usuario usuario) {
+		return usuarioRepository.save(usuario);
+	}
 
-    public void deletar(UUID id) {
-        usuarioRepository.deleteById(id);
+	public Usuario buscarPorId(UUID id) {
+		return usuarioRepository.findById(id).orElse(null);
+	}
+
+	public void deletar(UUID id) {
+		usuarioRepository.deleteById(id);
+	}
+
+	public Usuario salvarUsuario(UsuarioDTO usuarioDTO) {
+		
+		
+    	Usuario usuario = new Usuario();
+    	   
+    	usuario.setNome(usuarioDTO.getNome());
+    	usuario.setEmail(usuarioDTO.getEmail());
+    	usuario.setSenha(usuarioDTO.getSenha());
+    	
+    	return usuarioRepository.save(usuario);
+    			
+    		
     }
 }
